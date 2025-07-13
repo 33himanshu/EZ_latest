@@ -1,0 +1,193 @@
+{
+  "info": {
+    "_postman_id": "genai-document-assistant",
+    "name": "GenAI Document Assistant API",
+    "description": "API documentation for the GenAI Document Assistant - A powerful document processing and question-answering system.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Upload Document",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "formdata",
+          "formdata": [
+            {
+              "key": "file",
+              "type": "file",
+              "description": "Document file to upload (PDF, DOCX, TXT)",
+              "src": "/path/to/your/document.pdf"
+            }
+          ]
+        },
+        "url": {
+          "raw": "http://localhost:8501/upload",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8501",
+          "path": ["upload"]
+        },
+        "description": "Upload a document for processing. Supported formats: PDF, DOCX, TXT"
+      },
+      "response": [
+        {
+          "name": "Success Response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "formdata",
+              "formdata": [
+                {
+                  "key": "file",
+                  "type": "file",
+                  "src": "/path/to/your/document.pdf"
+                }
+              ]
+            },
+            "url": {
+              "raw": "http://localhost:8501/upload",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8501",
+              "path": ["upload"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"status\": \"success\",\n  \"doc_id\": \"unique-document-id-123\",\n  \"filename\": \"document.pdf\",\n  \"message\": \"Document uploaded and processed successfully\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Get Document Summary",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8501/summary?doc_id=YOUR_DOC_ID",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8501",
+          "path": ["summary"],
+          "query": [
+            {
+              "key": "doc_id",
+              "value": "YOUR_DOC_ID",
+              "description": "Document ID received from upload response"
+            }
+          ]
+        },
+        "description": "Retrieve the summary of a previously uploaded document"
+      },
+      "response": [
+        {
+          "name": "Success Response",
+          "originalRequest": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8501/summary?doc_id=YOUR_DOC_ID",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8501",
+              "path": ["summary"],
+              "query": [
+                {
+                  "key": "doc_id",
+                  "value": "YOUR_DOC_ID"
+                }
+              ]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"status\": \"success\",\n  \"doc_id\": \"unique-document-id-123\",\n  \"summary\": \"This is a concise summary of the document content. It provides an overview of the main points discussed in the document. The summary is generated using advanced NLP techniques to ensure accuracy and relevance.\"\n}"
+        }
+      ]
+    },
+    {
+      "name": "Ask Question",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Content-Type",
+            "value": "application/json"
+          }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"question\": \"What is this document about?\",\n  \"doc_id\": \"YOUR_DOC_ID\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8501/ask",
+          "protocol": "http",
+          "host": ["localhost"],
+          "port": "8501",
+          "path": ["ask"]
+        },
+        "description": "Ask a question about the content of a specific document"
+      },
+      "response": [
+        {
+          "name": "Success Response",
+          "originalRequest": {
+            "method": "POST",
+            "header": [
+              {
+                "key": "Content-Type",
+                "value": "application/json"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"question\": \"What is this document about?\",\n  \"doc_id\": \"YOUR_DOC_ID\"\n}"
+            },
+            "url": {
+              "raw": "http://localhost:8501/ask",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8501",
+              "path": ["ask"]
+            }
+          },
+          "status": "OK",
+          "code": 200,
+          "_postman_previewlanguage": "json",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "cookie": [],
+          "body": "{\n  \"status\": \"success\",\n  \"question\": \"What is this document about?\",\n  \"answer\": \"The document discusses the implementation of a GenAI Document Assistant system that leverages state-of-the-art language models and vector search to provide accurate, context-aware responses from documents.\",\n  \"sources\": [\n    {\n      \"text\": \"The GenAI Document Assistant is built using advanced NLP techniques including RAG (Retrieval-Augmented Generation) for accurate question answering.\",\n      \"page\": 1\n    },\n    {\n      \"text\": \"The system supports multiple document formats including PDF, DOCX, and plain text files.\",\n      \"page\": 2\n    }\n  ],\n  \"confidence\": 0.92\n}"
+        }
+      ]
+    }
+  ]
+}
