@@ -57,6 +57,11 @@ A powerful document processing and question-answering system that leverages stat
 - **Streamlit** - Web application framework
 - **Streamlit Extras** - Enhanced UI components
 - **Pygments** - Code syntax highlighting
+- ## 🎥 Demo Video
+
+[![GenAI Document Assistant Demo](https://img.youtube.com/vi/G-axlC2nolU/0.jpg)](https://www.youtube.com/watch?v=G-axlC2nolU)
+
+*Click the image above to watch the demo video*
 
 ## 🚀 Getting Started
 
