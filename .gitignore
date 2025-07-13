@@ -1,0 +1,13 @@
+﻿__pycache__/
+.venv/
+venv/
+*.pyc
+.env
+*.pdf
+vector_store/
+temp_uploaded.pdf
+*.pt
+*.bin
+*.h5
+*.pth
+*.pkl
